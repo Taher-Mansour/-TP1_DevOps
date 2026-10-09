@@ -1,0 +1,24 @@
+
+name: Validation des fonctionnalités
+
+on:
+  push:
+    branches:
+      - main
+      - ajout-fonctionnalites
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate_files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recuperer le code
+        uses: actions/checkout@v4
+
+      - name: Verifier les fichiers
+        run: |
+          test -s fonctionnalite1.txt
+          test -s fonctionnalite2.txt
+          echo "Les deux fichiers existent et contiennent du texte"
